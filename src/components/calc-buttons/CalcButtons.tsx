@@ -58,6 +58,35 @@ const CalcButtons: React.FC<ICalc> = ({
     isPoint === -1 && setCurrent(currentValue.concat(','));
   };
 
+  const onEqual = () => {
+    setOperand('');
+    setPreviousValue('');
+    setExpression('0');
+    setNext(false);
+    switch (currentOperand) {
+      case '+' : {
+        const result = parseFloat(previousValue) + parseFloat(currentValue);
+        setCurrent(result.toString());
+      }
+        break;
+      case '-' : {
+        const result = parseFloat(previousValue) - parseFloat(currentValue);
+        setCurrent(result.toString());
+      }
+        break;
+      case '/' : {
+        const result = parseFloat(previousValue) / parseFloat(currentValue);
+        setCurrent(result.toString());
+      }
+        break;
+      case '*' : {
+        const result = parseFloat(previousValue) * parseFloat(currentValue);
+        setCurrent(result.toString());
+      }
+        break;
+    }
+  };
+
   const onCalcAction = (e: any) => {
     switch (e.target.innerText) {
       case '+' :
@@ -143,7 +172,7 @@ const CalcButtons: React.FC<ICalc> = ({
       <Button onClick={onCalcAction}>+</Button>
       <Button style={largeButton} onClick={onNumberClick}>0</Button>
       <Button onClick={onPoint}>.</Button>
-      <Button>=</Button>
+      <Button onClick={onEqual}>=</Button>
     </StyledCalcButtons>
   );
 };
