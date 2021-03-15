@@ -19,20 +19,20 @@ const CalcButtons: React.FC<ICalc> = ({setCurrent, setExpression, currentValue})
     }
   };
 
-  const onClear = () => {
-    setCurrent('0');
-  };
+  const onClear = () => setCurrent('0');
 
   const onPlusMinus = () => {
     currentValue[0] === '-' && currentValue !== '0' && setCurrent(currentValue.slice(1));
     currentValue[0] !== '-' && currentValue !== '0' && setCurrent('-'.concat(currentValue));
   }
 
+  const onPercent = () => setCurrent((parseFloat(currentValue)/100).toString());
+
   return (
     <StyledCalcButtons>
       <Button style={lowFuncButton} onClick={onClear}>C</Button>
       <Button style={lowFuncButton} onClick={onPlusMinus}>+/-</Button>
-      <Button style={lowFuncButton}>%</Button>
+      <Button style={lowFuncButton} onClick={onPercent}>%</Button>
       <Button>/</Button>
       <Button onClick={onNumberClick}>7</Button>
       <Button onClick={onNumberClick}>8</Button>
