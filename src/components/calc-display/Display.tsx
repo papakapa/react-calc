@@ -1,9 +1,17 @@
 import React from 'react';
-import { StyledDisplay } from './StyledDisplay';
+import { StyledCurrentValue, StyledDisplay, StyledExpression } from './StyledDisplay';
 
-const Display:React.FC = () => {
+interface IDisplay {
+  expression: string;
+  currentValue: string;
+}
+
+const Display:React.FC<IDisplay> = ({expression, currentValue}) => {
   return (
-    <StyledDisplay>0</StyledDisplay>
+    <StyledDisplay>
+      <StyledExpression>{expression}</StyledExpression>
+      <StyledCurrentValue>{currentValue}</StyledCurrentValue>
+    </StyledDisplay>
   );
 };
 

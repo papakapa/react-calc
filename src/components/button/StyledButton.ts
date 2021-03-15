@@ -14,4 +14,8 @@ export const StyledButton = styled.button`
     background: #E33D3D;
     border: 1px solid #F29B94;
   }
+  &:active {
+    background: #E33D3D;
+    border: 1px solid #F29B94;
+  }
 `;

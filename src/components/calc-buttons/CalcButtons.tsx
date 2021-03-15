@@ -3,30 +3,48 @@ import { StyledCalcButtons } from './StyledCalcButtons';
 import Button from "../button/Button";
 import { largeButton, lowFuncButton } from "../../core/styles";
 
-const CalcButtons: React.FC = () => {
- return(
-   <StyledCalcButtons>
-     <Button style={lowFuncButton}>C</Button>
-     <Button style={lowFuncButton}>+/-</Button>
-     <Button style={lowFuncButton}>%</Button>
-     <Button>/</Button>
-     <Button>7</Button>
-     <Button>8</Button>
-     <Button>9</Button>
-     <Button>*</Button>
-     <Button>4</Button>
-     <Button>5</Button>
-     <Button>6</Button>
-     <Button>-</Button>
-     <Button>1</Button>
-     <Button>2</Button>
-     <Button>3</Button>
-     <Button>+</Button>
-     <Button style={largeButton}>0</Button>
-     <Button>.</Button>
-     <Button>=</Button>
-   </StyledCalcButtons>
- );
+interface ICalc {
+  setCurrent: any;
+  setExpression: any;
+  currentValue: string;
+}
+
+const CalcButtons: React.FC<ICalc> = ({setCurrent, setExpression, currentValue}) => {
+  const onNumberClick = (e: any) => {
+    if (currentValue === '0') {
+      setCurrent(e.target.innerText);
+    } else {
+      currentValue.length < 13 && setCurrent(currentValue.concat(e.target.innerText));
+    }
+  };
+
+  const onClear = () => {
+    setCurrent('0');
+  };
+
+  return (
+    <StyledCalcButtons>
+      <Button style={lowFuncButton} onClick={onClear}>C</Button>
+      <Button style={lowFuncButton}>+/-</Button>
+      <Button style={lowFuncButton}>%</Button>
+      <Button>/</Button>
+      <Button onClick={onNumberClick}>7</Button>
+      <Button onClick={onNumberClick}>8</Button>
+      <Button onClick={onNumberClick}>9</Button>
+      <Button>*</Button>
+      <Button onClick={onNumberClick}>4</Button>
+      <Button onClick={onNumberClick}>5</Button>
+      <Button onClick={onNumberClick}>6</Button>
+      <Button>-</Button>
+      <Button onClick={onNumberClick}>1</Button>
+      <Button onClick={onNumberClick}>2</Button>
+      <Button onClick={onNumberClick}>3</Button>
+      <Button>+</Button>
+      <Button style={largeButton} onClick={onNumberClick}>0</Button>
+      <Button>.</Button>
+      <Button>=</Button>
+    </StyledCalcButtons>
+  );
 };
 
 export default CalcButtons;
