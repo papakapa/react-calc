@@ -65,22 +65,23 @@ const CalcButtons: React.FC<ICalc> = ({
     setNext(false);
     switch (currentOperand) {
       case '+' : {
-        const result = parseFloat(previousValue) + parseFloat(currentValue);
+        console.log(parseFloat(previousValue.replace(',','.')));
+        const result = parseFloat(previousValue.replace(',','.')) + parseFloat(currentValue.replace(',','.'));
         setCurrent(result.toString());
       }
         break;
       case '-' : {
-        const result = parseFloat(previousValue) - parseFloat(currentValue);
+        const result = parseFloat(previousValue.replace(',','.')) - parseFloat(currentValue.replace(',','.'));
         setCurrent(result.toString());
       }
         break;
       case '/' : {
-        const result = parseFloat(previousValue) / parseFloat(currentValue);
+        const result = parseFloat(previousValue.replace(',','.')) / parseFloat(currentValue.replace(',','.'));
         setCurrent(result.toString());
       }
         break;
       case '*' : {
-        const result = parseFloat(previousValue) * parseFloat(currentValue);
+        const result = parseFloat(previousValue.replace(',','.')) * parseFloat(currentValue.replace(',','.'));
         setCurrent(result.toString());
       }
         break;
@@ -92,7 +93,7 @@ const CalcButtons: React.FC<ICalc> = ({
       case '+' :
         if (currentOperand === '+') {
           setOperand('+');
-          const result = parseFloat(previousValue) + parseFloat(currentValue);
+          const result = parseFloat(previousValue.replace(',','.')) + parseFloat(currentValue.replace(',','.'));
           setPreviousValue(result.toString());
           setCurrent(result.toString());
           setExpression(`${result.toString()} + `);
@@ -107,7 +108,7 @@ const CalcButtons: React.FC<ICalc> = ({
       case '-' :
         if (currentOperand === '-') {
           setOperand('-');
-          const result = parseFloat(previousValue) - parseFloat(currentValue);
+          const result = parseFloat(previousValue.replace(',','.')) - parseFloat(currentValue.replace(',','.'));
           setPreviousValue(result.toString());
           setCurrent(result.toString());
           setExpression(`${result.toString()} - `);
@@ -122,7 +123,7 @@ const CalcButtons: React.FC<ICalc> = ({
       case '/' :
         if (currentOperand === '/') {
           setOperand('/');
-          const result = parseFloat(previousValue)/parseFloat(currentValue);
+          const result = parseFloat(previousValue.replace(',','.'))/parseFloat(currentValue.replace(',','.'));
           setPreviousValue(result.toString());
           setCurrent(result.toString());
           setExpression(`${result.toString()} / `);
@@ -137,7 +138,7 @@ const CalcButtons: React.FC<ICalc> = ({
       case '*' :
         if (currentOperand === '*') {
           setOperand('*');
-          const result = parseFloat(previousValue) * parseFloat(currentValue);
+          const result = parseFloat(previousValue.replace(',','.')) * parseFloat(currentValue.replace(',','.'));
           setPreviousValue(result.toString());
           setCurrent(result.toString());
           setExpression(`${result.toString()} * `);
