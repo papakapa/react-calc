@@ -14,7 +14,8 @@ const CalcButtons: React.FC<ICalc> = ({setCurrent, setExpression, currentValue})
     if (currentValue === '0') {
       setCurrent(e.target.innerText);
     } else {
-      currentValue.length < 13 && setCurrent(currentValue.concat(e.target.innerText));
+      currentValue.length < 14 && currentValue[0] === '-' && setCurrent(currentValue.concat(e.target.innerText));
+      currentValue.length < 13 && currentValue[0] !== '-' && setCurrent(currentValue.concat(e.target.innerText));
     }
   };
 
@@ -22,10 +23,15 @@ const CalcButtons: React.FC<ICalc> = ({setCurrent, setExpression, currentValue})
     setCurrent('0');
   };
 
+  const onPlusMinus = () => {
+    currentValue[0] === '-' && currentValue !== '0' && setCurrent(currentValue.slice(1));
+    currentValue[0] !== '-' && currentValue !== '0' && setCurrent('-'.concat(currentValue));
+  }
+
   return (
     <StyledCalcButtons>
       <Button style={lowFuncButton} onClick={onClear}>C</Button>
-      <Button style={lowFuncButton}>+/-</Button>
+      <Button style={lowFuncButton} onClick={onPlusMinus}>+/-</Button>
       <Button style={lowFuncButton}>%</Button>
       <Button>/</Button>
       <Button onClick={onNumberClick}>7</Button>
